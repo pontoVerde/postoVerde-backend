@@ -27,28 +27,27 @@ const io = new Server(server, {
   }
 });
 
-// Simulação de conexão e envio de dados
+// Simulação de recebimento de dados do dispositivo e envio para o front-end
 io.on('connection', (socket) => {
-    socket.on('gauge1', async (data) => {
-      let aux = 0;
-      setInterval(function(){
-        const random = Math.floor(20 + Math.random() * 5);
-        if(random != aux){
-          socket.emit('gauge_speed1', random); 
-        }
+  // socket.on('gauge1', async (data) => {
+    let aux = 0;
+    setInterval(function(){
+      const random = Math.floor(20 + Math.random() * 5);
+      if(random != aux){
+        socket.emit('gauge_speed1', random); 
+      }
     }, 2000);
-  });
-    socket.on('gauge2', async (data) => {
-      let aux = 0;
-      setInterval(function(){
-        const random = Math.floor(49 + Math.random() * 5);
-        if(random != aux){
-          socket.emit('gauge_speed2', random); 
-        }
-        aux = random;
-    }, 3000);
-  });
+  // });
+  // socket.on('gauge2', async (data) => {
 
+  setInterval(function(){
+    const random = Math.floor(49 + Math.random() * 5);
+    if(random != aux){
+      socket.emit('gauge_speed2', random); 
+    }
+    aux = random;
+  }, 3000);
+  // });
 
 
 
